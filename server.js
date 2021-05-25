@@ -10,6 +10,7 @@ const redis = new Redis();
 let RedisStore = require("connect-redis")(session);
 
 /* Auth stuff */
+const mdb = require("./db/MDB");
 const passport = require("passport");
 const connectEnsureLogin = require("connect-ensure-login");
 const LocalStrategy = require("passport-local").Strategy;
@@ -36,6 +37,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(express.static("public"));
+
+mdb.on("error", console.error.bind(console, "connection error:"));
 
 app.use(
   session({
@@ -65,8 +68,20 @@ app.post(
   })
 );
 
-app.post("/register", (req, res) => {});
+app.post("/register", (req, res) => {
+  console.log("Body: ", req.body);
 
-app.listen(process.env.PORT, () => {
-  console.log(`App listening at http://localhost:${process.env.PORT}`);
+  User({
+    username: req.body.username,
+    password: req.body.username,
+  }).save((err, user) => {
+    if (err) res.redirect("/register");
+    res.redirect("/login");
+  });
+});
+
+mdb.once("open", function () {
+  app.listen(process.env.PORT, () => {
+    console.log(`App listening at http://localhost:${process.env.PORT}`);
+  });
 });
