@@ -22,13 +22,15 @@ passport.use(
         return done(err);
       }
       if (!user) {
-        return done(null, false, { message: "Incorrect username." });
+        return done(null, false, { message: "Incorrect username or password" });
       }
 
       user.comparePassword(password, (err, isMatch) => {
         if (err) return done(null, false, { message: err });
         if (!isMatch)
-          return done(null, false, { message: "Incorrect password." });
+          return done(null, false, {
+            message: "Incorrect username or password",
+          });
 
         return done(null, user);
       });
