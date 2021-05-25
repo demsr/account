@@ -77,10 +77,14 @@ app.get("/", connectEnsureLogin.ensureLoggedIn("/login"), (req, res) => {
 });
 app.get("/login", (req, res) => {
   console.log(req.flash("error"));
-  res.render("pages/login", { messages: req.flash("message") });
+  res.render("pages/login", {
+    error: req.flash("error"),
+  });
 });
 app.get("/register", (req, res) => {
-  res.render("pages/register");
+  res.render("pages/register", {
+    messages: req.flash("error"),
+  });
 });
 
 app.get("/logout", (req, res) => {
@@ -94,19 +98,31 @@ app.post(
   passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/login",
+    failureFlash: true,
   })
 );
 
 app.post("/register", (req, res) => {
   console.log("Body: ", req.body);
 
-  User({
-    name: req.body.name,
-    username: req.body.username,
-    password: req.body.password,
-  }).save((err, user) => {
-    if (err) res.redirect("/register");
-    res.redirect("/login");
+  User.find({ username: req.body.username }, (err, users) => {
+    if (err) {
+      req.flash("error", "unknown error");
+      return res.redirect("/register");
+    }
+    if (users.length > 0) {
+      req.flash("error", "username already in unse");
+      return res.redirect("/register");
+    }
+
+    User({
+      name: req.body.name,
+      username: req.body.username,
+      password: req.body.password,
+    }).save((err, user) => {
+      if (err) res.redirect("/register");
+      res.redirect("/login");
+    });
   });
 });
 
