@@ -78,7 +78,7 @@ app.get("/", connectEnsureLogin.ensureLoggedIn("/login"), (req, res) => {
 app.get("/login", (req, res) => {
   console.log(req.flash("error"));
   res.render("pages/login", {
-    error: req.flash("error"),
+    messages: req.flash("error"),
   });
 });
 app.get("/register", (req, res) => {
