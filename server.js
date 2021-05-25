@@ -1,11 +1,13 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
+const helmet = require("helmet");
 
 /* Session stuff */
 const session = require("express-session");
 const Redis = require("ioredis");
 const redis = new Redis();
+let RedisStore = require("connect-redis")(session);
 
 /* Auth stuff */
 const passport = require("passport");
@@ -29,10 +31,6 @@ passport.use(
   })
 );
 
-// use static serialize and deserialize of model for passport session support
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
-
 app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -41,7 +39,7 @@ app.use(express.static("public"));
 
 app.use(
   session({
-    store: new RedisStore({ client: redisClient }),
+    store: new RedisStore({ client: redis }),
     saveUninitialized: false,
     secret: "keyboard cat",
     resave: false,

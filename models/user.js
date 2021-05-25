@@ -8,7 +8,7 @@ const UserSchema = new Schema({
   password: { type: String, required: true },
 });
 
-UserSchema.pre(save, function (next) {
+UserSchema.pre("save", function (next) {
   var user = this;
 
   // only hash the password if it has been modified (or is new)
