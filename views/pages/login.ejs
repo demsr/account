@@ -5,11 +5,20 @@
   </head>
   <body class="container">
     <main>
-      <form action="/login" method="POST">
-        <input name="username" />
-        <input name="password" type="password" />
-        <button type="submit">Login</button>
-      </form>
+      <div class="userform">
+        <form action="/login" method="POST">
+          <div>
+            <label for="fusername">Username</label>
+            <input id="fusername" name="username" required />
+          </div>
+          <div>
+            <label for="fpassword">Password</label>
+            <input id="fpassword" name="password" type="password" required />
+          </div>
+
+          <button type="submit">Login</button>
+        </form>
+      </div>
     </main>
   </body>
 </html>

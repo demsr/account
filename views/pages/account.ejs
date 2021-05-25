@@ -3,7 +3,12 @@
   <head>
     <%- include('../partials/head'); %>
   </head>
-  <body class="container">
-    <main>account</main>
+  <body>
+    <header><%- include('../partials/navbar'); %></header>
+    <main>
+      Account
+
+      <div>username: <%= user.username %></div>
+    </main>
   </body>
 </html>
