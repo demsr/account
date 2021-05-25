@@ -2,8 +2,22 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 
+/* Session stuff */
+const session = require("express-session");
+const Redis = require("ioredis");
+const redis = new Redis();
+
 app.set("view engine", "ejs");
 app.use(express.static("public"));
+
+app.use(
+  session({
+    store: new RedisStore({ client: redisClient }),
+    saveUninitialized: false,
+    secret: "keyboard cat",
+    resave: false,
+  })
+);
 
 app.get("/", (req, res) => {
   res.render("pages/account");
