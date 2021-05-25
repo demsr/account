@@ -101,6 +101,7 @@ app.post("/register", (req, res) => {
   console.log("Body: ", req.body);
 
   User({
+    name: req.body.name,
     username: req.body.username,
     password: req.body.password,
   }).save((err, user) => {
