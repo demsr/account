@@ -4,13 +4,23 @@
     <%- include('../partials/head'); %>
   </head>
   <body class="container">
-    <main>
-      <form action="/login" method="POST">
-        <input name="name" />
-        <input name="username" />
-        <input name="password" type="password" />
+    <div class="register">
+      <form action="/register" method="POST">
+        <div>
+          <label for="fname">Name</label>
+          <input id="fname" name="name" required />
+        </div>
+        <div>
+          <label for="fusername">Username</label>
+          <input id="fusername" name="username" required />
+        </div>
+        <div>
+          <label for="fpassword">Password</label>
+          <input id="fpassword" name="password" type="password" required />
+        </div>
+
         <button type="submit">Register</button>
       </form>
-    </main>
+    </div>
   </body>
 </html>
