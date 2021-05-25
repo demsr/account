@@ -62,7 +62,7 @@ app.use(
     store: new RedisStore({ client: redis }),
     saveUninitialized: false,
     unset: "destroy",
-    secret: "keyboard cat",
+    secret: process.env.COOKIESECRET,
     resave: false,
     name: "keks",
     cookie: { secure: false },
