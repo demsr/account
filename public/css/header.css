@@ -1,0 +1,35 @@
+.Header,
+.Header-item {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.Header {
+  z-index: 32;
+  padding: 16px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-header-text);
+  background-color: var(--color-header-bg);
+}
+
+.Header-item {
+  margin-right: 16px;
+  align-self: stretch;
+}
+
+.Header-item--full {
+  flex: auto;
+}
+
+.Header-link {
+  white-space: nowrap;
+  color: var(--color-header-logo);
+  font-weight: 600;
+}
+
+.Header-link:focus,
+.Header-link:hover {
+  text-decoration: none;
+}

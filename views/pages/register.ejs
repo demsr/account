@@ -3,26 +3,52 @@
   <head>
     <%- include('../partials/head'); %>
   </head>
-  <body class="container">
-    <%= messages %>
-    <div class="userform">
-      <form action="/register" method="POST">
-        <div>
-          <label for="fname">Name</label>
-          <input id="fname" name="name" required />
-        </div>
-        <div>
-          <label for="fusername">Username</label>
-          <input id="fusername" name="username" required />
-        </div>
-        <div>
-          <label for="fpassword">Password</label>
-          <input id="fpassword" name="password" type="password" required />
-        </div>
+  <body>
+    <main class="center">
+      <%= messages %>
+      <div class="auth-form">
+        <div class="auth-form-body">
+          <form action="/register" method="POST">
+            <div>
+              <label for="fname">Name</label>
+              <input
+                class="form-control input-block"
+                id="fname"
+                name="name"
+                required
+              />
+            </div>
+            <div>
+              <label for="fusername">Username</label>
+              <input
+                class="form-control input-block"
+                id="fusername"
+                name="username"
+                required
+                autocomplete="off"
+              />
+            </div>
+            <div>
+              <label for="fpassword">Password</label>
+              <input
+                class="form-control input-block"
+                id="fpassword"
+                name="password"
+                type="password"
+                required
+                autocomplete="new-password"
+              />
+            </div>
 
-        <button type="submit">Register</button>
-        <a href="/login">Login</a>
-      </form>
-    </div>
+            <button class="btn btn-primary btn-block" type="submit">
+              Register
+            </button>
+            <p class="auth-switcher">
+              Already registered? <a href="/login">Login</a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </main>
   </body>
 </html>

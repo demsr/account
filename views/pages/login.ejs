@@ -1,25 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-color-mode="auto" lang="en">
   <head>
     <%- include('../partials/head'); %>
   </head>
-  <body class="container">
-    <main>
+  <body>
+    <main class="center">
       <%= messages %>
-      <div class="userform">
-        <form action="/login" method="POST">
-          <div>
-            <label for="fusername">Username</label>
-            <input id="fusername" name="username" required />
-          </div>
-          <div>
-            <label for="fpassword">Password</label>
-            <input id="fpassword" name="password" type="password" required />
-          </div>
+      <div class="auth-form">
+        <div class="auth-form-body">
+          <form action="/login" method="POST">
+            <div>
+              <label for="fusername">Username</label>
+              <input
+                class="form-control input-block"
+                id="fusername"
+                name="username"
+                required
+              />
+            </div>
+            <div>
+              <label for="fpassword">Password</label>
+              <input
+                class="form-control input-block"
+                id="fpassword"
+                name="password"
+                type="password"
+                required
+                autocomplete="current-password"
+              />
+            </div>
 
-          <button type="submit">Login</button>
-          <a href="/register">Register</a>
-        </form>
+            <button class="btn btn-primary btn-block" type="submit">
+              Login
+            </button>
+            <p class="auth-switcher">
+              New here? <a href="/register">Register</a>
+            </p>
+          </form>
+        </div>
       </div>
     </main>
   </body>

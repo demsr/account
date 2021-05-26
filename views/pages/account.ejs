@@ -1,15 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-color-mode="auto" lang="en">
   <head>
     <%- include('../partials/head'); %>
   </head>
   <body>
-    <header><%- include('../partials/navbar'); %></header>
-    <main>
-      Account
+    <header class="Header width-full flex-wrap Details">
+      <%- include('../partials/header'); %>
+    </header>
+    <div>
+      <aside
+        class="width-full border-bottom color-bg-primary py-3 p-responsive"
+      >
+        <%= user.username %>
+      </aside>
+      <div>
+        Account
 
-      <div>Name: <%= user.name %></div>
-      <div>Username: <%= user.username %></div>
-    </main>
+        <div>Name: <%= user.name %></div>
+        <div>Username: <%= user.username %></div>
+      </div>
+    </div>
+    <script src="/js/base.js"></script>
   </body>
 </html>
