@@ -9,6 +9,8 @@ const Redis = require("ioredis");
 const redis = new Redis();
 let RedisStore = require("connect-redis")(session);
 
+const apiRouter = require("./router/api");
+
 /* Auth stuff */
 const mdb = require("./db/MDB");
 const passport = require("passport");
@@ -45,7 +47,7 @@ passport.serializeUser(function (user, done) {
 
 // used to deserialize the user
 passport.deserializeUser(function (id, done) {
-  User.findById(id, function (err, user) {
+  User.findById(id, "-password", function (err, user) {
     done(err, user);
   });
 });
@@ -72,6 +74,8 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use("/api", apiRouter);
 
 app.get("/", connectEnsureLogin.ensureLoggedIn("/login"), (req, res) => {
   console.log(req.user);
