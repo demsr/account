@@ -1,3 +1,6 @@
 .color-bg-primary {
   background-color: var(--color-header-bg) !important;
 }
+.color-text-secondary {
+  color: #768390 !important;
+}
