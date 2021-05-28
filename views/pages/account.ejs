@@ -4,20 +4,37 @@
     <%- include('../partials/head'); %>
   </head>
   <body>
-    <header class="Header width-full flex-wrap Details">
-      <%- include('../partials/header'); %>
-    </header>
-    <div>
-      <aside
-        class="width-full border-bottom color-bg-primary py-3 p-responsive"
-      >
-        <%= user.username %>
-      </aside>
-      <div>
-        Account
+    <!-- HEADER -->
+    <div style="position: relative"><%- include('../partials/header'); %></div>
 
-        <div>Name: <%= user.name %></div>
-        <div>Username: <%= user.username %></div>
+    <!-- CONTENT -->
+    <div>
+      <div class="d-flex">
+        <!-- left asside-->
+        <aside></aside>
+        <!-- center main content-->
+        <div
+          style="
+            padding: 16px 16px 0 16px;
+            width: 100%;
+            max-width: 1000px;
+            margin: auto;
+          "
+        >
+          <div class="Box Box--responsive p-5 mt-3">
+            <h2 class="h2 lh-condensed mb-2">Account</h2>
+            <div>Name: <%= user.name %></div>
+            <div>Username: <%= user.username %></div>
+            <p class="f4 color-text-secondary">
+              Your news feed helps you keep up with recent activity on
+              repositories you
+            </p>
+            <a class="btn btn-outline mt-2" href="/#">Explore more</a>
+            <button class="btn btn-outline mt-2">Explore more</button>
+          </div>
+        </div>
+        <!-- right asside-->
+        <aside></aside>
       </div>
     </div>
     <script src="/js/base.js"></script>
